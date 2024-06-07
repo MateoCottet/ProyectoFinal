@@ -2,30 +2,46 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoFinal.Models;
 
-namespace ProyectoFinal.Controllers;
-
-public class HomeController : Controller
+namespace ProyectoFinal.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ILogger<HomeController> _logger;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public ActionResult Login(string email, string clave)
+        {
+            Usuarios UsuarioActivo = UsuariosService.Login(email, clave);  
+            if (UsuarioActivo != null)
+            {
+                // Asigna el usuario activo a la ViewBag para usarlo en la vista
+                ViewBag.Usuarios = UsuarioActivo;
+                return View("Index");
+            }
+            else
+            {
+                return View("Login"); // Asegúrate de tener una vista llamada Login
+            }
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

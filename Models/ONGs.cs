@@ -10,6 +10,18 @@ public class ONGs
     public string Latitud {get; set;}
     public string Longitud {get; set;}
 
+    public ONGs() {
+        id = 0;
+        idUsuario = 0;
+        nombre = "";
+        logo = "";
+        descripcion = "";
+        domicilio = "";
+        IdProvincia = 0;
+        Latitud = "";
+        Longitud = "";
+    }
+
     public ONGs(int Id, int IdUsuario, string Nombre, string Logo, string Descripcion, string Domicilio, int idProvincia, string latitud, string longitud)
     {
         id = Id;
