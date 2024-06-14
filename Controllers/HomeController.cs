@@ -25,7 +25,8 @@ namespace ProyectoFinal.Controllers
 
         public ActionResult Login(string email, string clave)
         {
-            Usuarios UsuarioActivo = UsuariosService.Login(email, clave);  
+            UsuariosService svc = new UsuariosService();
+            Usuarios UsuarioActivo = svc.Login(email, clave);  
             if (UsuarioActivo != null)
             {
                 // Asigna el usuario activo a la ViewBag para usarlo en la vista

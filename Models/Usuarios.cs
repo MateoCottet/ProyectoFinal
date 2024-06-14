@@ -1,7 +1,7 @@
 public class Usuarios
 {
     public int id { get; set; }
-    public int IdPelicula { get; set; }
+
     public string email { get; set; }
     public string clave { get; set; }
     public string nombreUsuario { get; set; }
@@ -10,7 +10,6 @@ public class Usuarios
 
     public Usuarios() {
         id = 0;
-        IdPelicula = 0;
         email = "";
         clave = "";
         nombreUsuario = "";
@@ -21,7 +20,6 @@ public class Usuarios
     public Usuarios(int Id, string Email, string clave, string NombreUsuario, DateTime FechaNacimiento, string Descripcion)
     {
         id = Id;
-        IdPelicula = 0; // No se incluía en el constructor original
         email = Email;
         clave = clave;
         nombreUsuario = NombreUsuario;
