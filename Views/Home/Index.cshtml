@@ -10,9 +10,16 @@
             <input type="text" placeholder="Buscar">
             <button type="button">🔍</button>
         </div>
-        <div class="login">
+        @if(@ViewBag.Usuarios.email != "") {
+              <div class="Perfil">
+          <a href='@Url.Action("Home Page","Home")'><button type="button">@ViewBag.Usuarios.nombreUsuario</button></a>
+        </div>
+        }
+        else{
+          <div class="login">
           <a href='@Url.Action("Login","Home")'><button type="button">Iniciar Sesión</button></a>
         </div>
+        }
     </header>
 
     <main>

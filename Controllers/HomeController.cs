@@ -17,6 +17,7 @@ namespace ProyectoFinal.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Usuario = new Usuarios();
             return View();
         }
 
@@ -34,8 +35,6 @@ namespace ProyectoFinal.Controllers
             
             UsuariosService svc = new UsuariosService();
             Usuarios UsuarioActivo = svc.Login(email, clave);  
-         
-           
             
             if (UsuarioActivo != null)
             {
@@ -48,7 +47,10 @@ namespace ProyectoFinal.Controllers
                 return View("Login"); // Asegúrate de tener una vista llamada Login
             }
         }
-
+        public IActionResult TraerOng(string Ong)
+    {
+        ViewBag.Card = BD.MisCards("Select * from Card where IdCard = " + O)[0];    
+    }
          [HttpGet("Login")]
         public IActionResult LoginGet()
         {
