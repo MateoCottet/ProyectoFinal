@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoFinal.Models;
+using ProyectoFinal.Services;
 
 namespace ProyectoFinal.Controllers
 {
@@ -23,10 +25,18 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
-        public ActionResult Login(string email, string clave)
+        [HttpPost("Login")]
+        public IActionResult Login()
         {
+            string email, clave;
+            email = Request.Form["email"];
+            clave = Request.Form["password"];
+            
             UsuariosService svc = new UsuariosService();
             Usuarios UsuarioActivo = svc.Login(email, clave);  
+         
+           
+            
             if (UsuarioActivo != null)
             {
                 // Asigna el usuario activo a la ViewBag para usarlo en la vista
@@ -37,6 +47,12 @@ namespace ProyectoFinal.Controllers
             {
                 return View("Login"); // Asegúrate de tener una vista llamada Login
             }
+        }
+
+         [HttpGet("Login")]
+        public IActionResult LoginGet()
+        {
+            return View("Login"); // Asegúrate de tener una vista llamada Login
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
