@@ -3,8 +3,10 @@
 }
 <body>
     <header>
+   
+     
         <div class="logo">
-            <img src="./img/LogoUnityCares.png" alt="UnityCares Logo">
+            <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Buscar">
@@ -22,30 +24,21 @@
         }
     </header>
 
-    <main>
+    
         <div class="banner">
-            <img src="./img/manos.png" alt="Banner Image">
+            <img src="https://github.com/GuidoCofa/UnityCares/blob/main/img/manos.png?raw=true" alt="Banner Image">
         </div>
-
+        <div>
         <div class="content">
-            <div class="card">
-                <img class="logoong" src="./img/logo1.png" alt="Logo 1">
-                <p>Defiende el medio ambiente y promueve la paz.</p>
-                
+        @foreach(var i in @ViewBag.ONGs){
+        <div class="card">
+            <div class="photo">
+                <img src= @i.logo alt="" height="300px" width="auto">
             </div>
-            <div class="card">
-                <img class="logoong" src="img/logo2.png" alt="Logo 2">
-                <p>Defiende el medio ambiente y promueve la paz.</p>
-            </div>
-            <div class="card">
-                <img class="logoong" src="img/logo3.png" alt="Logo 3">
-                <p>Lucha por los derechos humanos en todo el mundo.</p>
-            </div>
-            <div class="card">
-                <img class="logoong" src="img/logo4.png" alt="Logo 4">
-                <p>Brinda atención médica en crisis sin fronteras.</p>
-            </div>
-        </div>
-    </main>
+                <div class="title">@i.nombre</div>
+                </div>
+        }
+
+    
 
 </body>

@@ -1,3 +1,4 @@
+//Controller -> Service -> Repository -> DB
 using System.Diagnostics;
 using System;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,19 @@ namespace ProyectoFinal.Controllers
         }
 
         public IActionResult Index()
-        {
-            ViewBag.Usuario = new Usuarios();
+        {   
+             ONGsService svc = new ONGsService();
+            ViewBag.ONGs = svc.TraerTodas();
+            ViewBag.Usuarios = new Usuarios();
             return View();
         }
+
+        public IActionResult TraerTodas()
+   {
+         ONGsService svc = new ONGsService();
+         return View();
+ 
+   }
 
         public IActionResult Privacy()
         {
@@ -47,10 +57,6 @@ namespace ProyectoFinal.Controllers
                 return View("Login"); // Asegúrate de tener una vista llamada Login
             }
         }
-        public IActionResult TraerOng(string Ong)
-    {
-        ViewBag.Card = BD.MisCards("Select * from Card where IdCard = " + O)[0];    
-    }
          [HttpGet("Login")]
         public IActionResult LoginGet()
         {

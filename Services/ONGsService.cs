@@ -1,16 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using ProyectoFinal.Repositories;
 using Dapper;
 
 
-namespace ProyectoFinal.Services
-{
-    public class ONGsService
+
+public class ONGsService
     {
-        public ONGs TraerOng(string nombre, string logo) {
+        public List<ONGs> TraerTodas() {
             ONGsRepository repo = new ONGsRepository();  
-            return repo.TraerOng(nombre, logo);
+            return repo.TraerTodas();
         }  
     }
-}
