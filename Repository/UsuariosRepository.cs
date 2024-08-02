@@ -17,7 +17,11 @@ namespace ProyectoFinal.Repositories
 
         }  
     }
+
+     
+
 }
+        
 /*
 public static Usuarios Login(string email, string clave) {
         Usuarios MiUser = new Usuarios();

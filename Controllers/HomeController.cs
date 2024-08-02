@@ -24,6 +24,12 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
+        public IActionResult postLogin(int id)
+        {
+            ONGsService svc = new ONGsService();
+            ViewBag.ONGsCreadas = svc.postLogin(id);
+            return View();
+        }
         public IActionResult TraerTodas()
    {
          ONGsService svc = new ONGsService();
@@ -50,7 +56,7 @@ namespace ProyectoFinal.Controllers
             {
                 // Asigna el usuario activo a la ViewBag para usarlo en la vista
                 ViewBag.Usuarios = UsuarioActivo;
-                return View("Index");
+                return RedirectToAction("postLogin", "Home",new {id=UsuarioActivo.id});
             }
             else
             {
