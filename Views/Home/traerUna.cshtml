@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "traerUna";
+}
+
+<body class="bodyLogueado">
+    <header class="headerLogueado">
+        <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Donaciones</a></li>
+                <li><a href="#">Calendario</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Qué necesitamos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="mainLogueado">
+        <section class="news">
+            <div class="logo-container">
+                <img src="" alt="Logo Placeholder">
+             @if (ViewBag.UnaONG != null)
+            {
+                @foreach(var i in @ViewBag.UnaONG){
+                <div class="card">
+                    <div class="photo">
+                        <a href='@Url.Action("traerUna","Home", new {id = i.id})'><img src= @i.logo alt="" height="300px" width="auto"></a>
+                    </div>
+                        <div class="title"><u><b>@i.nombre</b></u> </div> 
+                    </div>
+                }
+            }
+                <p>slogan here</p>
+            </div>
+            <div class="news-content">
+                <h2>Noticias</h2>
+                <p>
+                    Anunciamos hoy, el éxito de nuestra campaña de recaudación de fondos para apoyar a comunidades afectadas por desastres naturales. Gracias a la generosidad de donantes, se logró recaudar $500,000, que serán destinados a proporcionar alimentos, refugio y atención médica urgente a las familias necesitadas en áreas afectadas."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footerLogueado">
+        <p>&copy; 2024 UnityCares. Todos los derechos reservados.</p>
+    </footer>
+</body>
