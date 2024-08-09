@@ -1,9 +1,88 @@
+USE [master]
+GO
+/****** Object:  Database [UnityCares]    Script Date: 9/8/2024 11:42:53 ******/
+CREATE DATABASE [UnityCares]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'UnityCares', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\UnityCares.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'UnityCares_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\UnityCares_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [UnityCares] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [UnityCares].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [UnityCares] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [UnityCares] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [UnityCares] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [UnityCares] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [UnityCares] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [UnityCares] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [UnityCares] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [UnityCares] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [UnityCares] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [UnityCares] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [UnityCares] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [UnityCares] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [UnityCares] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [UnityCares] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [UnityCares] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [UnityCares] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [UnityCares] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [UnityCares] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [UnityCares] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [UnityCares] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [UnityCares] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [UnityCares] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [UnityCares] SET RECOVERY FULL 
+GO
+ALTER DATABASE [UnityCares] SET  MULTI_USER 
+GO
+ALTER DATABASE [UnityCares] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [UnityCares] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [UnityCares] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [UnityCares] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [UnityCares] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'UnityCares', N'ON'
+GO
+ALTER DATABASE [UnityCares] SET QUERY_STORE = OFF
+GO
 USE [UnityCares]
 GO
-/****** Object:  User [alumno]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  User [alumno]    Script Date: 9/8/2024 11:42:53 ******/
 CREATE USER [alumno] FOR LOGIN [alumno] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Table [dbo].[Donaciones]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[Donaciones]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21,7 +100,7 @@ CREATE TABLE [dbo].[Donaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Eventos]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[Eventos]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,7 +120,7 @@ CREATE TABLE [dbo].[Eventos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Noticias]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[Noticias]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -59,7 +138,7 @@ CREATE TABLE [dbo].[Noticias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ONGs]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[ONGs]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -80,7 +159,7 @@ CREATE TABLE [dbo].[ONGs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Provincias]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[Provincias]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +173,7 @@ CREATE TABLE [dbo].[Provincias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoDonaciones]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[TipoDonaciones]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +187,7 @@ CREATE TABLE [dbo].[TipoDonaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,12 +198,12 @@ CREATE TABLE [dbo].[Usuarios](
 	[clave] [varchar](50) NOT NULL,
 	[nombreUsuario] [varchar](50) NOT NULL,
 	[fechaNacimiento] [date] NULL,
-    [Descripcion] [varchar](MAX) NULL,
+	[Descripcion] [varchar](max) NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[Donaciones] ON 
 
@@ -147,11 +226,11 @@ SET IDENTITY_INSERT [dbo].[Eventos] OFF
 GO
 SET IDENTITY_INSERT [dbo].[ONGs] ON 
 
-INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (5, 2, N'Mariposas y Soles', N'file:///C:/Users/47571983/Downloads/image0.jpeg', N'Es una ong de..', NULL, NULL, NULL, NULL)
-INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (6, 4, N'Fulbito', N'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.conectate.com.do%2Farticulo%2Ftodo-lo-que-necesitas-saber-sobre-el-futbol%2F&psig=AOvVaw0TfYpWO7o7RYewjwRtVG6X&ust=1716031550826000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKD3yurJlIYDFQAAAAAdAAAAABAJ', N'Es una ong que se dedica a tratar de inculcarle a los chicos el futbol en sus vidas', NULL, NULL, NULL, NULL)
+INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (5, 1, N'Mariposas y Soles', N'https://img.freepik.com/fotos-premium/mariposa-sobre-fondo-puesta-sol_288945-441.jpg', N'Es una ong que se encarga de hacer eventos a beneficiencia ayudando a los niños', NULL, NULL, NULL, NULL)
+INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (6, 4, N'Fulbito', N'https://i1.sndcdn.com/avatars-000512579256-vtfntl-t240x240.jpg', N'Es una ong que se dedica a tratar de inculcarle a los chicos el futbol en sus vidas', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (7, 4, N'voleicito', N'https://chajarialdia.com.ar/wp-content/uploads/2021/09/ViveSeleccion-y-Comunidad-Voley_76353721.jpg', N'Somos una ong que se dedica a inculcar voley desde que naces ', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (8, 5, N'LosFutbolitos', N'https://www.infobae.com/new-resizer/L-zGSUKQXVaHSV-fCS3Hry0FrZs=/1440x1440/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/01/18131140/futbol-1920-3-1024x575.jpg', N'Los chicos de racing necesitan apoyo en algunas cosas y te necesitamos ', N'Yattay 240, cacabksabkd', 1, N'-35', N'-45')
-INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (9, 8, N'losPalos', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDqGmd7sRQpTHKn92GTA_NXgaZvL98OxZRWIpEDqWbA&s', N'Es una ONG que busca donar madera para que se puedan armar cosas', NULL, NULL, NULL, NULL)
+INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (9, 1, N'losPalos', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDqGmd7sRQpTHKn92GTA_NXgaZvL98OxZRWIpEDqWbA&s', N'Es una ONG que busca donar madera para que se puedan armar cosas', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (10, 9, N'BrawlGamers', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM7af0Uu1rWHrFTJJQkWrtxkBX569wLqIgtb3Yq5Uj2A&s', N'ong divertida para los chicos, les ofrecemos y les abrimos las puertas al hermoso mundo de los videojuegos', NULL, NULL, NULL, NULL)
 SET IDENTITY_INSERT [dbo].[ONGs] OFF
 GO
@@ -172,24 +251,7 @@ SET IDENTITY_INSERT [dbo].[TipoDonaciones] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
 
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (2, N'mate@gmail.com', N'12345', N'mate', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (4, N'franco@gmail.com', N'12345', N'fran', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (5, N'leandrosolarte@gmail.com', N'76543', N'lean', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (6, N'guidinho@gmail.com', N'guiDOpalmeiras1', N'gudinhoPalmeiras', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (7, N'polshu@gmail.com', N'superPollo', N'PolshetaGamer', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (8, N'matiasxesteves@gmail.com', N'merlini36', N'matiasxpalo', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (9, N'ezegajer@gmail.com', N'boyitaboye69', N'ezocapo10', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (10, N'donantes@gmail.com', N'nosotrosAyudamos10', N'MrDonaciones', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (11, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (12, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (13, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (14, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (15, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (16, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (17, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (18, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (19, N'polshu@polshu.com.ar', N'pablito', N'pol', NULL, NULL)
-INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (20, N'polshu@polshu.com.ar', N'pass', N'polcito', CAST(N'1972-07-13' AS Date))
+INSERT [dbo].[Usuarios] ([id], [email], [clave], [nombreUsuario], [fechaNacimiento], [Descripcion]) VALUES (1, N'cottetmateo2017@gmail.com', N'Hola123', N'Mateo Cottet', CAST(N'2006-07-18' AS Date), NULL)
 SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 GO
 ALTER TABLE [dbo].[Donaciones]  WITH CHECK ADD  CONSTRAINT [FK_Donaciones_ONGs] FOREIGN KEY([idONG])
@@ -202,22 +264,12 @@ REFERENCES [dbo].[TipoDonaciones] ([id])
 GO
 ALTER TABLE [dbo].[Donaciones] CHECK CONSTRAINT [FK_Donaciones_TipoDonaciones]
 GO
-ALTER TABLE [dbo].[Donaciones]  WITH CHECK ADD  CONSTRAINT [FK_Donaciones_Usuarios] FOREIGN KEY([idUsuario])
-REFERENCES [dbo].[Usuarios] ([id])
-GO
-ALTER TABLE [dbo].[Donaciones] CHECK CONSTRAINT [FK_Donaciones_Usuarios]
-GO
 ALTER TABLE [dbo].[Eventos]  WITH CHECK ADD  CONSTRAINT [FK_Eventos_ONGs] FOREIGN KEY([idONG])
 REFERENCES [dbo].[ONGs] ([id])
 GO
 ALTER TABLE [dbo].[Eventos] CHECK CONSTRAINT [FK_Eventos_ONGs]
 GO
-ALTER TABLE [dbo].[ONGs]  WITH CHECK ADD  CONSTRAINT [FK_ONGs_Usuarios] FOREIGN KEY([idUsuario])
-REFERENCES [dbo].[Usuarios] ([id])
-GO
-ALTER TABLE [dbo].[ONGs] CHECK CONSTRAINT [FK_ONGs_Usuarios]
-GO
-/****** Object:  StoredProcedure [dbo].[Donaciones_Insert]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  StoredProcedure [dbo].[Donaciones_Insert]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -260,7 +312,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eventos_Insert]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  StoredProcedure [dbo].[Eventos_Insert]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -298,7 +350,7 @@ BEGIN
 	)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TipoDonaciones_Insert]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  StoredProcedure [dbo].[TipoDonaciones_Insert]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -322,7 +374,7 @@ BEGIN
 	)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Usuarios_Insert]    Script Date: 24/5/2024 11:56:37 ******/
+/****** Object:  StoredProcedure [dbo].[Usuarios_Insert]    Script Date: 9/8/2024 11:42:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -362,4 +414,8 @@ BEGIN
         @Descripcion
 	)
 END
+GO
+USE [master]
+GO
+ALTER DATABASE [UnityCares] SET  READ_WRITE 
 GO
