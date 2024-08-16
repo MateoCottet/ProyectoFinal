@@ -37,10 +37,11 @@ namespace ProyectoFinal.Controllers
  
    }
 
-   public IActionResult traerUna(string nombre, int id)
+   public IActionResult traerUna(int id)
    {
         ONGsService svc = new ONGsService();
-        ViewBag.UnaONG= svc.traerUna(nombre, id);
+        //ViewBag.UnaONG = new ONGs();
+        ViewBag.UnaONG = svc.traerUna(id);
         return View();
    }
 

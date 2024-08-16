@@ -16,8 +16,8 @@ public class ONGsService
             return repo.postLogin(id);
         }
 
-        public ONGs traerUna(string nombre, int id) {
+        public ONGs traerUna(int id) {
             ONGsRepository repo = new ONGsRepository();  
-            return repo.traerUna(nombre,  id);
+            return repo.traerUna(id);
         }
     }

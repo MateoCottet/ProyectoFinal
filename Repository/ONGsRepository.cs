@@ -31,10 +31,10 @@ namespace ProyectoFinal.Repositories
             return todasLasOngs;
 
         }
-        public ONGs traerUna(string nombre, int id) {
+        public ONGs traerUna(int id) {
             ONGs MiONG = new ONGs(); 
-            string sql = "SELECT * FROM ONGs WHERE nombre = @pnombre AND id = @pid";
-            var parameters = new { pnombre = nombre, pid = id };
+            string sql = "SELECT * FROM ONGs WHERE id = @pid";
+            var parameters = new {pid = id };
 
             using(SqlConnection db = BD.GetConnection()) {
                 MiONG = db.QueryFirstOrDefault<ONGs>(sql, parameters);

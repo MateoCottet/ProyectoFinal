@@ -2,46 +2,52 @@
     ViewData["Title"] = "traerUna";
 }
 
-<body class="bodyLogueado">
-    <header class="headerLogueado">
-        <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="#">Donaciones</a></li>
-                <li><a href="#">Calendario</a></li>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Qué necesitamos</a></li>
+<body class="bodyLogueado" style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <header class="headerLogueado" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; text-align: center;">
+        <a href='@Url.Action("Index","Home")'><img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" style="max-width: 100px;"></a>
+
+        <nav style="margin-top: 20px;">
+            <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Donaciones</a></li>
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Calendario</a></li>
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Sobre nosotros</a></li>
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Qué necesitamos</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="mainLogueado">
-        <section class="news">
-            <div class="logo-container">
-                <img src="" alt="Logo Placeholder">
-             @if (ViewBag.UnaONG != null)
-            {
-                @foreach(var i in @ViewBag.UnaONG){
-                <div class="card">
-                    <div class="photo">
-                        <a href='@Url.Action("traerUna","Home", new {id = i.id})'><img src= @i.logo alt="" height="300px" width="auto"></a>
-                    </div>
-                        <div class="title"><u><b>@i.nombre</b></u> </div> 
-                    </div>
-                }
-            }
-                <p>slogan here</p>
+    <main  style="padding: 40px 20px; text-align: center;">
+        <section class="description" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; max-width: 800px; margin-bottom: 40px;">
+            <div class="logo-container" style="margin-bottom: 20px;">
+                <img src="@ViewBag.UnaONG.logo" alt="Logo Placeholder" style="max-height: 200px; width: auto; margin-bottom: 10px;">
+                <div class="title" style="font-size: 24px; font-weight: bold; color: #2c3e50;">@ViewBag.UnaONG.nombre</div>
             </div>
-            <div class="news-content">
-                <h2>Noticias</h2>
-                <p>
-                    Anunciamos hoy, el éxito de nuestra campaña de recaudación de fondos para apoyar a comunidades afectadas por desastres naturales. Gracias a la generosidad de donantes, se logró recaudar $500,000, que serán destinados a proporcionar alimentos, refugio y atención médica urgente a las familias necesitadas en áreas afectadas."
+            <div class="description-content" style="text-align: left;">
+                <h2 style="color: #2c3e50;">Descripción</h2>
+                <p style="color: #34495e; line-height: 1.6;">
+                   @ViewBag.UnaONG.descripcion
+                </p>
+            </div>
+        </section>
+
+        <section class="news" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; max-width: 800px;">
+            <h2 style="color: #2c3e50;">Noticias</h2>
+            <div class="news-item" style="text-align: left; margin-bottom: 20px;">
+                <h3 style="color: #2c3e50;">Título de la noticia 1</h3>
+                <p style="color: #34495e; line-height: 1.6;">
+                    Anunciamos hoy, el éxito de nuestra campaña de recaudación de fondos para apoyar a comunidades afectadas por desastres naturales. Gracias a la generosidad de donantes, se logró recaudar $500,000, que serán destinados a proporcionar alimentos, refugio y atención médica urgente a las familias necesitadas en áreas afectadas.
+                </p>
+            </div>
+            <div class="news-item" style="text-align: left;">
+                <h3 style="color: #2c3e50;">Título de la noticia 2</h3>
+                <p style="color: #34495e; line-height: 1.6;">
+                    Otra noticia importante relacionada con la ONG se puede colocar aquí, manteniendo a los visitantes informados sobre los últimos eventos, campañas o logros de la organización.
                 </p>
             </div>
         </section>
     </main>
 
-    <footer class="footerLogueado">
+    <footer class="footerLogueado" style="background-color: #2c3e50; color: #ecf0f1; text-align: center; padding: 20px;">
         <p>&copy; 2024 UnityCares. Todos los derechos reservados.</p>
     </footer>
 </body>

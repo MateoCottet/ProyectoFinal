@@ -247,7 +247,10 @@ nav ul li a {
 }
 
 .footerLogueado {
+  display: flex;
   background-color: #f8f8f8;
   padding: 10px;
   text-align: center;
+  justify-content: center;
+  margin-top: 18%;
 }
