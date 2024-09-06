@@ -31,17 +31,26 @@ namespace ProyectoFinal.Controllers
             return View();
         }
         public IActionResult TraerTodas()
-   {
-         ONGsService svc = new ONGsService();
-         return View();
- 
-   }
+        {
+            ONGsService svc = new ONGsService();
+            return View();
+        }
+
+
+        public IActionResult traerNoticias()
+        {
+            NoticiasService svc = new NoticiasService();
+            ViewBag.Noticias = svc.traerNoticias(1);
+            return View();
+        }
 
    public IActionResult traerUna(int id)
    {
-        ONGsService svc = new ONGsService();
+        ONGsService ongSvc = new ONGsService();
+        NoticiasService noticiasSvc = new NoticiasService();
         //ViewBag.UnaONG = new ONGs();
-        ViewBag.UnaONG = svc.traerUna(id);
+        ViewBag.UnaONG = ongSvc.traerUna(id);
+        ViewBag.Noticias = noticiasSvc.traerNoticias(id);
         return View();
    }
 

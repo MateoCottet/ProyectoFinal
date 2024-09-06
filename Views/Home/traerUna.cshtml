@@ -29,22 +29,18 @@
                 </p>
             </div>
         </section>
-
-        <section class="news" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; max-width: 800px;">
-            <h2 style="color: #2c3e50;">Noticias</h2>
-            <div class="news-item" style="text-align: left; margin-bottom: 20px;">
-                <h3 style="color: #2c3e50;">Título de la noticia 1</h3>
-                <p style="color: #34495e; line-height: 1.6;">
-                    Anunciamos hoy, el éxito de nuestra campaña de recaudación de fondos para apoyar a comunidades afectadas por desastres naturales. Gracias a la generosidad de donantes, se logró recaudar $500,000, que serán destinados a proporcionar alimentos, refugio y atención médica urgente a las familias necesitadas en áreas afectadas.
-                </p>
+     @if (ViewBag.Noticias != null)
+    {
+        @foreach(var i in @ViewBag.Noticias){
+        <div class="card">
+            <div class="photo">
+                <a href='@Url.Action("traerUna","Home", new {id = i.id})'><img src= @i.logo alt="" height="300px" width="auto"></a>
             </div>
-            <div class="news-item" style="text-align: left;">
-                <h3 style="color: #2c3e50;">Título de la noticia 2</h3>
-                <p style="color: #34495e; line-height: 1.6;">
-                    Otra noticia importante relacionada con la ONG se puede colocar aquí, manteniendo a los visitantes informados sobre los últimos eventos, campañas o logros de la organización.
-                </p>
-            </div>
-        </section>
+                <div class="title"><u><b>@i.Titulo</b></u> </div>
+                <div class="title">@i.Descripcion</div>
+                </div>
+        }
+    }
     </main>
 
     <footer class="footerLogueado" style="background-color: #2c3e50; color: #ecf0f1; text-align: center; padding: 20px;">

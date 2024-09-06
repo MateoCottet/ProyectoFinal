@@ -19,9 +19,10 @@
         @foreach(var i in @ViewBag.ONGsCreadas){
         <div class="card">
             <div class="photo">
-                <img src= @i.logo alt="" height="300px" width="auto">
+                <a href='@Url.Action("traerUna","Home", new {id = i.id})'><img src= @i.logo alt="" height="300px" width="auto"></a>
             </div>
                 <div class="title">@i.nombre</div>
+                <div class="title">@i.descripcion</div>
                 </div>
         }
     }
