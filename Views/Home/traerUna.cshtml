@@ -4,7 +4,9 @@
 
 <body class="bodyLogueado" style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
     <header class="headerLogueado" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; text-align: center;">
-        <a href='@Url.Action("Index","Home")'><img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" style="max-width: 100px;"></a>
+        <a href='@Url.Action("Index", "Home")'>
+            <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" style="max-width: 100px;">
+        </a>
 
         <nav style="margin-top: 20px;">
             <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
@@ -16,7 +18,7 @@
         </nav>
     </header>
 
-    <main  style="padding: 40px 20px; text-align: center;">
+    <main style="padding: 40px 20px; text-align: center;">
         <section class="description" style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; max-width: 800px; margin-bottom: 40px;">
             <div class="logo-container" style="margin-bottom: 20px;">
                 <img src="@ViewBag.UnaONG.logo" alt="Logo Placeholder" style="max-height: 200px; width: auto; margin-bottom: 10px;">
@@ -25,22 +27,29 @@
             <div class="description-content" style="text-align: left;">
                 <h2 style="color: #2c3e50;">Descripción</h2>
                 <p style="color: #34495e; line-height: 1.6;">
-                   @ViewBag.UnaONG.descripcion
+                    @ViewBag.UnaONG.descripcion
                 </p>
             </div>
         </section>
-     @if (ViewBag.Noticias != null)
-    {
-        @foreach(var i in @ViewBag.Noticias){
-        <div class="card">
-            <div class="photo">
-                <a href='@Url.Action("traerUna","Home", new {id = i.id})'><img src= @i.logo alt="" height="300px" width="auto"></a>
-            </div>
-                <div class="title"><u><b>@i.Titulo</b></u> </div>
-                <div class="title">@i.Descripcion</div>
+        @if (ViewBag.Noticias != null)
+        {
+            <h2 style="color: #2c3e50;">Noticias</h2>
+            @foreach (var i in ViewBag.Noticias)
+            {
+    
+                <div class="card" style="margin-bottom: 20px; padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div class="photo">
+                        <img src="@i.Foto" alt="" height="300px" width="auto">
+                    </div>
+                    <div class="title" style="font-size: 18px; font-weight: bold;">
+                        <u><b>@i.Titulo</b></u>
+                    </div>
+                    <div class="description" style="margin-top: 10px;">
+                        @i.Descripcion
+                    </div>
                 </div>
+            }
         }
-    }
     </main>
 
     <footer class="footerLogueado" style="background-color: #2c3e50; color: #ecf0f1; text-align: center; padding: 20px;">

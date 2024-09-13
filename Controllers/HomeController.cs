@@ -37,19 +37,19 @@ namespace ProyectoFinal.Controllers
         }
 
 
-        public IActionResult traerNoticias()
+        /*public IActionResult traerNoticias(int IdONG)
         {
             NoticiasService svc = new NoticiasService();
-            ViewBag.Noticias = svc.traerNoticias(1);
-            return View();
-        }
+            ViewBag.Noticias = svc.traerNoticias(IdONG);
+            return View("traerUna");
+        } */
 
-   public IActionResult traerUna(int id)
+   public IActionResult traerUna(int id, int IdONG)
    {
         ONGsService ongSvc = new ONGsService();
         NoticiasService noticiasSvc = new NoticiasService();
-        //ViewBag.UnaONG = new ONGs();
         ViewBag.UnaONG = ongSvc.traerUna(id);
+        ViewBag.id = id;
         ViewBag.Noticias = noticiasSvc.traerNoticias(id);
         return View();
    }

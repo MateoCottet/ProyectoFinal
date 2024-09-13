@@ -6,8 +6,8 @@ using Dapper;
 
 public class NoticiasService
     {
-        public List<Noticias> traerNoticias(int id) {
+        public List<Noticias> traerNoticias(int IdONG) {
             NoticiasRepository repo = new NoticiasRepository();  
-            return repo.traerNoticias(id);
+            return repo.traerNoticias(IdONG);
         } 
     }

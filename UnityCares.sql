@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [UnityCares]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Database [UnityCares]    Script Date: 13/9/2024 12:02:21 ******/
 CREATE DATABASE [UnityCares]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -79,10 +79,10 @@ ALTER DATABASE [UnityCares] SET QUERY_STORE = OFF
 GO
 USE [UnityCares]
 GO
-/****** Object:  User [alumno]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  User [alumno]    Script Date: 13/9/2024 12:02:21 ******/
 CREATE USER [alumno] FOR LOGIN [alumno] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Table [dbo].[Donaciones]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[Donaciones]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,7 +100,7 @@ CREATE TABLE [dbo].[Donaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Eventos]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[Eventos]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,7 +120,7 @@ CREATE TABLE [dbo].[Eventos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Noticias]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[Noticias]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,7 +138,7 @@ CREATE TABLE [dbo].[Noticias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ONGs]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[ONGs]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +159,7 @@ CREATE TABLE [dbo].[ONGs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Provincias]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[Provincias]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,7 +173,7 @@ CREATE TABLE [dbo].[Provincias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoDonaciones]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[TipoDonaciones]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -187,7 +187,7 @@ CREATE TABLE [dbo].[TipoDonaciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -224,13 +224,21 @@ INSERT [dbo].[Eventos] ([id], [idONG], [nombre], [localidad], [IdProvincia], [fe
 INSERT [dbo].[Eventos] ([id], [idONG], [nombre], [localidad], [IdProvincia], [fechaEventos], [horaEvento], [cantidadPersonas]) VALUES (11, 10, N'tabletsParaTodos', N'Coronel Diaz 2170', NULL, CAST(N'2024-12-24T00:00:00.000' AS DateTime), NULL, 500)
 SET IDENTITY_INSERT [dbo].[Eventos] OFF
 GO
+SET IDENTITY_INSERT [dbo].[Noticias] ON 
+
+INSERT [dbo].[Noticias] ([Id], [IdONG], [Titulo], [Descripcion], [Foto], [Fecha]) VALUES (1, 5, N'Ropa para los chicos', N'Recaudamos mas 500 prendas de ropa ', N'https://cdn.valenciaplaza.com/public/Image/2022/3/8f6c181f-07b0-4aae-89bb-9875842ba05d_NoticiaAmpliada.jpg', NULL)
+INSERT [dbo].[Noticias] ([Id], [IdONG], [Titulo], [Descripcion], [Foto], [Fecha]) VALUES (5, 9, N'Recaudo contactos!', N'Nuestro fundador dijo, presente! en la presentación del nuevo jugador de San Lorenzo, el vasco Muniain', N'https://media.diariouno.com.ar/p/08a407e681aff02e0306a15e8df8098e/adjuntos/298/imagenes/009/402/0009402230/1200x0/smart/muniain-san-lorenzo-1jpg.jpg', NULL)
+INSERT [dbo].[Noticias] ([Id], [IdONG], [Titulo], [Descripcion], [Foto], [Fecha]) VALUES (7, 10, N'Nuestro fundador, modo facha!', N'La facha del fundador!', N'https://s3.amazonaws.com/media.mixrank.com/profilepic/a197b099153804715f1ca4905e95a54a', NULL)
+INSERT [dbo].[Noticias] ([Id], [IdONG], [Titulo], [Descripcion], [Foto], [Fecha]) VALUES (9, 10, N'Nueva propuesta', N'Su idea es agregarle mas cosas al juego Brawl Stars, segun epic games es la mejor prpuesta que han dicho para implementar en Brawl Stars hoy en dia', N'https://www.sdpnoticias.com/resizer/v2/OEP64WZHJRGDJDJJWBAWBVET4M.jpeg?smart=true&auth=2e6d9be2f6a615c8c9186c510201e600f7fc8218948c3f5007d7b04ed65467c9&width=1440&height=810', NULL)
+SET IDENTITY_INSERT [dbo].[Noticias] OFF
+GO
 SET IDENTITY_INSERT [dbo].[ONGs] ON 
 
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (5, 1, N'Mariposas y Soles', N'https://img.freepik.com/fotos-premium/mariposa-sobre-fondo-puesta-sol_288945-441.jpg', N'Es una ong que se encarga de hacer eventos a beneficiencia ayudando a los niños', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (6, 4, N'Fulbito', N'https://i1.sndcdn.com/avatars-000512579256-vtfntl-t240x240.jpg', N'Es una ong que se dedica a tratar de inculcarle a los chicos el futbol en sus vidas', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (7, 4, N'voleicito', N'https://chajarialdia.com.ar/wp-content/uploads/2021/09/ViveSeleccion-y-Comunidad-Voley_76353721.jpg', N'Somos una ong que se dedica a inculcar voley desde que naces ', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (8, 5, N'LosFutbolitos', N'https://www.infobae.com/new-resizer/L-zGSUKQXVaHSV-fCS3Hry0FrZs=/1440x1440/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/01/18131140/futbol-1920-3-1024x575.jpg', N'Los chicos de racing necesitan apoyo en algunas cosas y te necesitamos ', N'Yattay 240, cacabksabkd', 1, N'-35', N'-45')
-INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (9, 1, N'losPalos', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDqGmd7sRQpTHKn92GTA_NXgaZvL98OxZRWIpEDqWbA&s', N'Es una ONG que busca donar madera para que se puedan armar cosas', NULL, NULL, NULL, NULL)
+INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (9, 1, N'losPalos', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDqGmd7sRQpTHKn92GTA_NXgaZvL98OxZRWIpEDqWbA&s', N'Es una ONG que ayuda con el tema de armar cosas con madera', NULL, NULL, NULL, NULL)
 INSERT [dbo].[ONGs] ([id], [idUsuario], [nombre], [logo], [descripcion], [domicilio], [IdProvincia], [Latitud], [Longitud]) VALUES (10, 9, N'BrawlGamers', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM7af0Uu1rWHrFTJJQkWrtxkBX569wLqIgtb3Yq5Uj2A&s', N'ong divertida para los chicos, les ofrecemos y les abrimos las puertas al hermoso mundo de los videojuegos', NULL, NULL, NULL, NULL)
 SET IDENTITY_INSERT [dbo].[ONGs] OFF
 GO
@@ -269,7 +277,7 @@ REFERENCES [dbo].[ONGs] ([id])
 GO
 ALTER TABLE [dbo].[Eventos] CHECK CONSTRAINT [FK_Eventos_ONGs]
 GO
-/****** Object:  StoredProcedure [dbo].[Donaciones_Insert]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  StoredProcedure [dbo].[Donaciones_Insert]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -312,7 +320,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eventos_Insert]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  StoredProcedure [dbo].[Eventos_Insert]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -350,7 +358,7 @@ BEGIN
 	)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TipoDonaciones_Insert]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  StoredProcedure [dbo].[TipoDonaciones_Insert]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -374,7 +382,7 @@ BEGIN
 	)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Usuarios_Insert]    Script Date: 9/8/2024 11:42:53 ******/
+/****** Object:  StoredProcedure [dbo].[Usuarios_Insert]    Script Date: 13/9/2024 12:02:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
