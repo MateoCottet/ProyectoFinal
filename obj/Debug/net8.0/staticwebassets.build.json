@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ps+QGVNlXKgUV4MN0WeLUr3oKzlwNrE5e8kj/WwqQHw=",
+  "Hash": "iecRTfIq9O8sS+lfb/+6XZdFFhY38T+9GslSCWELV+s=",
   "Source": "ProyectoFinal",
   "BasePath": "_content/ProyectoFinal",
   "Mode": "Default",
@@ -93,12 +93,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\47168146\\Desktop\\Nueva carpeta\\ProyectoFinal\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\47168146\\Desktop\\Nueva carpeta\\ProyectoFinal\\wwwroot\\js\\script.js",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\47168146\\Desktop\\Nueva carpeta\\ProyectoFinal\\wwwroot\\",
       "BasePath": "_content/ProyectoFinal",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/script.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,7 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\script.js"
     },
     {
       "Identity": "C:\\Users\\47168146\\Desktop\\Nueva carpeta\\ProyectoFinal\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",

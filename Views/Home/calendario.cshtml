@@ -1,4 +1,43 @@
-﻿const calendar = document.querySelector('.calendar');
+@{
+    ViewData["Title"] = "calendario";
+}
+<body>
+
+<header class="headerLogueado" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; text-align: center;">
+        <a href='@Url.Action("Index", "Home")'>
+            <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" style="max-width: 100px;">
+        </a>
+
+        <nav style="margin-top: 20px;">
+            <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Donaciones</a></li>
+                <li style="margin: 0 15px;"><a href='@Url.Action("calendario","Home")'style="color: #ecf0f1; text-decoration: none;">Calendario</a></li>
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Sobre nosotros</a></li>
+                <li style="margin: 0 15px;"><a href="#" style="color: #ecf0f1; text-decoration: none;">Qué necesitamos</a></li>
+            </ul>
+        </nav>
+    </header>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button class="nav-button" id="prev-month">&lt;</button>
+      <div class="month-year">
+        <span id="month">Septiembre</span>
+        <span id="year">2024</span>
+      </div>
+      <button class="nav-button" id="next-month">&gt;</button>
+    </div>
+    <div class="calendar">
+      <div class="day">Lun</div>
+      <div class="day">Mar</div>
+      <div class="day">Mié</div>
+      <div class="day">Jue</div>
+      <div class="day">Vie</div>
+      <div class="day">Sáb</div>
+      <div class="day">Dom</div>
+    </div>
+  </div>
+
+<script>const calendar = document.querySelector('.calendar');
 const monthDisplay = document.getElementById('month');
 const yearDisplay = document.getElementById('year');
 
@@ -70,3 +109,6 @@ document.getElementById('next-month').addEventListener('click', () => {
 
 // Inicializar el calendario
 generateCalendar(currentMonth, currentYear);
+</script>
+</body>
+</html>
