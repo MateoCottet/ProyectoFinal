@@ -2,18 +2,23 @@
     ViewData["Title"] = "Login";
 }
 
-
 <body class="bodyLogin"> 
-    <div class="containerA">
+    <header class="headerLogin">
+        <a href='@Url.Action("Index", "Home")'>
+            <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo" class="logo">
+        </a>
+    </header>
+
+    <main class="containerA">
         <h2>Iniciar Sesión</h2>
-        <form action='@Url.Action("Login","Home")' method="post" id="login-form" >
+        <form action='@Url.Action("Login","Home")' method="post" id="login-form">
             <div class="form-group">
-                <label for="username">Email</label>
-                <input type="email" id="email" name="email" value="cottetmateo2017@gmail.com">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Ingresa tu email" required  value="cottetmateo2017@gmail.com" >
             </div>
-            <div class="form-group">
+            <div class="form-group"> 
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" value="Hola123">
+                <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required value="Hola123">
             </div>
             <div class="form-group">
                 <button type="submit">Iniciar Sesión</button>
@@ -22,11 +27,9 @@
         <div class="register">
             <p>¿No tienes una cuenta? <a href="#">Registrarse</a></p>
         </div>
-    </div>
-</main>
-        <footer class="border-top footer text-muted">
-        <div class="containerA">
-            &copy;  2024 UnityCares. Todos los derechos reservados. 
-        </div>
+    </main>
+
+    <footer class="footerLogueado">
+        <p>&copy; 2024 UnityCares. Todos los derechos reservados.</p>
     </footer>
 </body>
