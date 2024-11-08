@@ -58,8 +58,12 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
-         public IActionResult calendario()
+         public IActionResult calendario(int id, int IdONG)
         {
+        
+            EventosService eventosSvc = new EventosService();
+            ViewBag.id = id;
+            ViewBag.Eventos = eventosSvc.traerEventos(id);
             return View();
         }
 

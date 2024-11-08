@@ -18,6 +18,24 @@
     </nav>
 </header>
 
+@if (ViewBag.Eventos != null)
+    {
+        <h2>Eventos</h2>
+        <div class="news-container"> <!-- Contenedor para mantener el mismo tamaño -->
+            @foreach (var i in ViewBag.Eventos)
+            {
+                <div class="card news-card"> <!-- Añadir clase para estilos específicos -->
+                    
+                    <div class="title">
+                        <u><b>@i.Nombre</b></u>
+                    </div>
+                    <div class="description">
+                        @i.Localidad
+                    </div>
+                </div>
+            }
+        </div>
+    }
 <div class="calendar-container">
     <div class="calendar-header">
         <button class="nav-button" id="prev-month">&lt;</button>
