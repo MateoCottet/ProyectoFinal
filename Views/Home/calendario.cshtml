@@ -1,135 +1,342 @@
 @{
-    ViewData["Title"] = "calendario";
+    ViewData["Title"] = "Calendario";
 }
+
 <body>
+    <header class="headerLogueado">
+        <a href='@Url.Action("Index", "Home")'>
+            <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo">
+        </a>
 
-<header class="headerLogueado">
-    <a href='@Url.Action("Index", "Home")'>
-        <img src="https://raw.githubusercontent.com/GuidoCofa/UnityCares/main/img/LogoUnityCares.png" alt="UnityCares Logo">
-    </a>
+        <nav class="navMenu">
+            <ul class="navList">
+                <li><a href="#" class="navLink">Donaciones</a></li>
+                <li><a href='@Url.Action("Calendario", "Home", new { id = ViewBag.id })' class="navLink">Calendario</a></li>
+                <li><a href="#" class="navLink">Sobre nosotros</a></li>
+                <li><a href="#" class="navLink">Qué necesitamos</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <nav class="navMenu">
-        <ul class="navList">
-            <li><a href="#" class="navLink">Donaciones</a></li>
-            <li><a href='@Url.Action("calendario","Home")' class="navLink">Calendario</a></li>
-            <li><a href="#" class="navLink">Sobre nosotros</a></li>
-            <li><a href="#" class="navLink">Qué necesitamos</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="add-event-button-container">
+        <button class="btn-add-event" onclick="openModal()">+ Agregar Evento</button>
+    </div>
 
-@if (ViewBag.Eventos != null)
+    @if (ViewBag.Eventos != null && ViewBag.Eventos.Count > 0)
     {
-        <h2>Eventos</h2>
-        <div class="news-container"> <!-- Contenedor para mantener el mismo tamaño -->
-            @foreach (var i in ViewBag.Eventos)
+        <h2 class="events-title">Próximos Eventos</h2>
+        <div class="news-container">
+            @foreach (var evento in ViewBag.Eventos)
             {
-                <div class="card news-card"> <!-- Añadir clase para estilos específicos -->
-                    
+                <div class="card news-card">
                     <div class="title">
-                        <u><b>@i.Nombre</b></u>
+                        <u><b>@evento.Nombre</b></u>
                     </div>
                     <div class="description">
-                        @i.Localidad
+                        <p><i class="fas fa-map-marker-alt"></i> @evento.Localidad</p>
+                        <p><i class="far fa-calendar-alt"></i> @evento.FechaEventos.ToString("dd/MM/yyyy")</p>
+                        @if (!string.IsNullOrEmpty(evento.HoraEvento))
+                        {
+                            <p><i class="far fa-clock"></i> @evento.HoraEvento</p>
+                        }
+                        <p><i class="fas fa-users"></i> @evento.CantidadPersonas personas</p>
                     </div>
                 </div>
             }
         </div>
     }
-<div class="calendar-container">
-    <div class="calendar-header">
-        <button class="nav-button" id="prev-month">&lt;</button>
-        <div class="month-year">
-            <span id="month">Septiembre</span>
-            <span id="year">2024</span>
+
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button class="nav-button" id="prev-month">&lt;</button>
+            <div class="month-year">
+                <span id="month">Diciembre</span>
+                <span id="year">2024</span>
+            </div>
+            <button class="nav-button" id="next-month">&gt;</button>
         </div>
-        <button class="nav-button" id="next-month">&gt;</button>
+        <div class="calendar">
+            <div class="day">Lun</div>
+            <div class="day">Mar</div>
+            <div class="day">Mié</div>
+            <div class="day">Jue</div>
+            <div class="day">Vie</div>
+            <div class="day">Sáb</div>
+            <div class="day">Dom</div>
+        </div>
     </div>
-    <div class="calendar">
-        <div class="day">Lun</div>
-        <div class="day">Mar</div>
-        <div class="day">Mié</div>
-        <div class="day">Jue</div>
-        <div class="day">Vie</div>
-        <div class="day">Sáb</div>
-        <div class="day">Dom</div>
+
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Crear Nuevo Evento</h2>
+            <form action="@Url.Action("CrearEvento", "Home")" method="POST">
+                <input type="hidden" name="IdONG" value="@ViewBag.id">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Evento:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="localidad">Localidad:</label>
+                    <input type="text" id="localidad" name="localidad" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaEventos">Fecha:</label>
+                    <input type="date" id="fechaEventos" name="fechaEventos" required>
+                </div>
+                <div class="form-group">
+                    <label for="horaEvento">Hora:</label>
+                    <input type="time" id="horaEvento" name="horaEvento">
+                </div>
+                <div class="form-group">
+                    <label for="cantidadPersonas">Cantidad de Personas:</label>
+                    <input type="number" id="cantidadPersonas" name="cantidadPersonas" required>
+                </div>
+                <button type="submit" class="btn-submit">Crear Evento</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-const calendar = document.querySelector('.calendar');
-const monthDisplay = document.getElementById('month');
-const yearDisplay = document.getElementById('year');
+    <style>
+        .add-event-button-container {
+            margin: 20px;
+            text-align: right;
+        }
 
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+        .events-title {
+            margin: 20px;
+            color: #2c3e50;
+            font-size: 24px;
+        }
 
-const months = [
-  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-];
+        .btn-add-event {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
 
-function generateCalendar(month, year) {
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayIndex = new Date(year, month, 1).getDay();
+        .btn-add-event:hover {
+            background-color: #2980b9;
+        }
 
-  // Limpiar los días previos
-  calendar.innerHTML = `
-    <div class="day">Lun</div>
-    <div class="day">Mar</div>
-    <div class="day">Mié</div>
-    <div class="day">Jue</div>
-    <div class="day">Vie</div>
-    <div class="day">Sáb</div>
-    <div class="day">Dom</div>
-  `;
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
 
-  // Ajustar el primer día del mes
-  const paddingDays = (firstDayIndex + 6) % 7;  // Ajusta para que empiece en lunes
-  for (let i = 0; i < paddingDays; i++) {
-    const emptyDiv = document.createElement('div');
-    emptyDiv.classList.add('date');
-    calendar.appendChild(emptyDiv);
-  }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-  // Generar los días
-  for (let day = 1; day <= daysInMonth; day++) {
-    const dayDiv = document.createElement('div');
-    dayDiv.classList.add('date');
-    dayDiv.innerText = day;
-    calendar.appendChild(dayDiv);
-  }
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
 
-  // Actualizar mes y año
-  monthDisplay.textContent = months[month];
-  yearDisplay.textContent = year;
+        .close:hover {
+            color: #333;
+        }
 
-  // Asegura que la altura del calendario sea consistente
-  calendar.style.height = `${calendar.scrollHeight}px`;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-// Navegar entre los meses
-document.getElementById('prev-month').addEventListener('click', () => {
-  currentMonth--;
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  }
-  generateCalendar(currentMonth, currentYear);
-});
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
 
-document.getElementById('next-month').addEventListener('click', () => {
-  currentMonth++;
-  if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  generateCalendar(currentMonth, currentYear);
-});
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
 
-// Inicializar el calendario
-generateCalendar(currentMonth, currentYear);
-</script>
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
 
+        .btn-submit {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #219a52;
+        }
+
+        .news-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card .title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .news-card .description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .news-card i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script>
+        const calendar = document.querySelector('.calendar');
+        const monthDisplay = document.getElementById('month');
+        const yearDisplay = document.getElementById('year');
+
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        const months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        @if (ViewBag.Eventos != null)
+        {
+            <text>
+            const eventos = @Html.Raw(Json.Serialize(ViewBag.Eventos));
+            </text>
+        }
+        else
+        {
+            <text>
+            const eventos = [];
+            </text>
+        }
+
+        function generateCalendar(month, year) {
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDayIndex = new Date(year, month, 1).getDay();
+
+            calendar.innerHTML = `
+                <div class="day">Lun</div>
+                <div class="day">Mar</div>
+                <div class="day">Mié</div>
+                <div class="day">Jue</div>
+                <div class="day">Vie</div>
+                <div class="day">Sáb</div>
+                <div class="day">Dom</div>
+            `;
+
+            const paddingDays = (firstDayIndex + 6) % 7;
+            for (let i = 0; i < paddingDays; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('date');
+                calendar.appendChild(emptyDiv);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('date');
+                dayDiv.innerText = day;
+
+                const eventosDelDia = eventos.filter(evento => {
+                    const fechaEvento = new Date(evento.fechaEventos);
+                    return fechaEvento.getDate() === day &&
+                           fechaEvento.getMonth() === month &&
+                           fechaEvento.getFullYear() === year;
+                });
+
+                if (eventosDelDia.length > 0) {
+                    dayDiv.classList.add('has-event');
+                    const tooltipText = eventosDelDia.map(e => 
+                        `${e.nombre} - ${e.localidad}${e.horaEvento ? ' - ' + e.horaEvento : ''}`
+                    ).join('\n');
+                    dayDiv.title = tooltipText;
+                }
+
+                calendar.appendChild(dayDiv);
+            }
+
+            monthDisplay.textContent = months[month];
+            yearDisplay.textContent = year;
+        }
+
+        function openModal() {
+            document.getElementById('eventModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('eventModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('eventModal')) {
+                closeModal();
+            }
+        }
+
+        document.getElementById('prev-month').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById('next-month').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        generateCalendar(currentMonth, currentYear);
+    </script>
 </body>
-</html>

@@ -11,7 +11,7 @@
         <nav class="navMenu">
             <ul class="navList">
                 <li><a href="#" class="navLink">Donaciones</a></li>
-                <li><a href='@Url.Action("calendario","Home")' class="navLink">Calendario</a></li>
+                <li><a href='@Url.Action("Calendario", "Home", new { id = ViewBag.id })' class="navLink">Calendario</a></li>
                 <li><a href="#" class="navLink">Sobre nosotros</a></li>
                 <li><a href="#" class="navLink">Qué necesitamos</a></li>
             </ul>
@@ -19,48 +19,46 @@
     </header>
 
     <main class="mainContent">
-    <section class="description">
-        <div class="logo-container">
-            <img src="@ViewBag.UnaONG.logo" alt="Logo Placeholder" class="ongLogo">
-            <div class="title">@ViewBag.UnaONG.nombre</div>
-        </div>
-        <div class="description-content">
-            <h2>Descripción</h2>
-            <p>@ViewBag.UnaONG.descripcion</p>
-        </div>
-    </section>
-    
-    @if (ViewBag.Noticias != null)
-    {
-        <h2>Noticias</h2>
-        <div class="news-container"> <!-- Contenedor para mantener el mismo tamaño -->
-            @foreach (var i in ViewBag.Noticias)
-            {
-                <div class="card news-card"> <!-- Añadir clase para estilos específicos -->
-                    <div class="photo">
-                        <img src="@i.Foto" alt="" class="newsPhoto">
+        <section class="description">
+            <div class="logo-container">
+                <img src="@ViewBag.UnaONG.Logo" alt="Logo Placeholder" class="ongLogo">
+                <div class="title">@ViewBag.UnaONG.Nombre</div>
+            </div>
+            <div class="description-content">
+                <h2>Descripción</h2>
+                <p>@ViewBag.UnaONG.Descripcion</p>
+            </div>
+        </section>
+        
+        @if (ViewBag.Noticias != null)
+        {
+            <h2>Noticias</h2>
+            <div class="news-container">
+                @foreach (var i in ViewBag.Noticias)
+                {
+                    <div class="card news-card">
+                        <div class="photo">
+                            <img src="@i.Foto" alt="" class="newsPhoto">
+                        </div>
+                        <div class="title">
+                            <u><b>@i.Titulo</b></u>
+                        </div>
+                        <div class="description">
+                            @i.Descripcion
+                        </div>
                     </div>
-                    <div class="title">
-                        <u><b>@i.Titulo</b></u>
-                    </div>
-                    <div class="description">
-                        @i.Descripcion
-                    </div>
-                </div>
-            }
-        </div>
-    }
-</main>
-
+                }
+            </div>
+        }
+    </main>
 
     <footer class="footerLogueado">
         <p>&copy; 2024 UnityCares. Todos los derechos reservados.</p>
     </footer>
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>

@@ -2,45 +2,69 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using ProyectoFinal.Models;
 
-namespace ProyectoFinal.Repositories 
+namespace ProyectoFinal.Repositories
 {
     public class ONGsRepository
     {
         public List<ONGs> TraerTodas()
         {
-            List<ONGs> todasLasOngs = new List<ONGs>();
-            
-            string sql = "SELECT * FROM ONGs";
-
-            using(SqlConnection db = BD.GetConnection()) {
-                todasLasOngs  = db.Query<ONGs>(sql).ToList();
+            using(SqlConnection db = BD.GetConnection())
+            {
+                string sql = @"SELECT 
+                    id as Id,
+                    idUsuario as IdUsuario,
+                    nombre as Nombre,
+                    logo as Logo,
+                    descripcion as Descripcion,
+                    domicilio as Domicilio,
+                    IdProvincia,
+                    Latitud,
+                    Longitud
+                FROM ONGs";
+                return db.Query<ONGs>(sql).ToList();
             }
-
-            return todasLasOngs;
         }
-           public List<ONGs> postLogin(int id) {
-             List<ONGs> todasLasOngs = new List<ONGs>();
 
-            string sql = "SELECT * FROM ONGs where idUsuario = @pid";
-              var    parameters = new { pid = id};
-             using(SqlConnection db = BD.GetConnection()) {
-                todasLasOngs = db.Query<ONGs>(sql, parameters).ToList();
-            } 
-
-            return todasLasOngs;
-
+        public ONGs traerUna(int id)
+        {
+            using(SqlConnection db = BD.GetConnection())
+            {
+                string sql = @"SELECT 
+                    id as Id,
+                    idUsuario as IdUsuario,
+                    nombre as Nombre,
+                    logo as Logo,
+                    descripcion as Descripcion,
+                    domicilio as Domicilio,
+                    IdProvincia,
+                    Latitud,
+                    Longitud
+                FROM ONGs 
+                WHERE id = @pid";
+                return db.QueryFirstOrDefault<ONGs>(sql, new { pid = id });
+            }
         }
-        public ONGs traerUna(int id) {
-            ONGs MiONG = new ONGs(); 
-            string sql = "SELECT * FROM ONGs WHERE id = @pid";
-            var parameters = new {pid = id };
 
-            using(SqlConnection db = BD.GetConnection()) {
-                MiONG = db.QueryFirstOrDefault<ONGs>(sql, parameters);
-            } 
-          return MiONG;
-
-        }  
+        public List<ONGs> postLogin(int id)
+        {
+            using(SqlConnection db = BD.GetConnection())
+            {
+                string sql = @"SELECT 
+                    id as Id,
+                    idUsuario as IdUsuario,
+                    nombre as Nombre,
+                    logo as Logo,
+                    descripcion as Descripcion,
+                    domicilio as Domicilio,
+                    IdProvincia,
+                    Latitud,
+                    Longitud
+                FROM ONGs 
+                WHERE idUsuario = @pid";
+                return db.Query<ONGs>(sql, new { pid = id }).ToList();
+            }
+        }
     }
- }
+}

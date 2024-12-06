@@ -1,23 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+using ProyectoFinal.Models;
 using ProyectoFinal.Repositories;
-using Dapper;
 
-public class ONGsService
+namespace ProyectoFinal.Services
+{
+    public class ONGsService
     {
-        public List<ONGs> TraerTodas() {
-            ONGsRepository repo = new ONGsRepository();  
-            return repo.TraerTodas();
-        } 
+        private ONGsRepository _repository;
 
-        public List<ONGs> postLogin(int id){
-            ONGsRepository repo = new ONGsRepository();
-            return repo.postLogin(id);
+        public ONGsService()
+        {
+            _repository = new ONGsRepository();
         }
 
-        public ONGs traerUna(int id) {
-            ONGsRepository repo = new ONGsRepository();  
-            return repo.traerUna(id);
+        public List<ONGs> TraerTodas()
+        {
+            return _repository.TraerTodas();
+        }
+
+        public ONGs traerUna(int id)
+        {
+            return _repository.traerUna(id);
+        }
+
+        public List<ONGs> postLogin(int id)
+        {
+            return _repository.postLogin(id);
         }
     }
+}
